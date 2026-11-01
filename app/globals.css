@@ -93,3 +93,5 @@ body{background:var(--hp-surface);color:#172421}
 }
 @keyframes hp-slide{from{transform:translateX(-100%)}to{transform:translateX(0)}}
 @keyframes hp-fade{from{opacity:0}to{opacity:1}}
+
+.mobile-drawer:not(.is-open){display:none!important}
