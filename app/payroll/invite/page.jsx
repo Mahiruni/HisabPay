@@ -1,0 +1,4 @@
+'use client';
+import {useState} from 'react';
+import {createClient} from '@supabase/supabase-js';
+export default function Invite(){const [status,setStatus]=useState('');async function accept(){const db=createClient(process.env.NEXT_PUBLIC_SUPABASE_URL,process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY||process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);const token=new URLSearchParams(window.location.search).get('token');if(!token){setStatus('Invitation token missing');return}const {error}=await db.rpc('hisabpay_accept_payroll_invite',{p_token:token});setStatus(error?error.message:'Invitation accepted')}return <main style={{padding:32}}><h1>HisabPay invitation</h1><p>Sign in with your verified invited email before accepting.</p><button onClick={accept}>Accept invitation</button><p role="status">{status}</p></main>}
